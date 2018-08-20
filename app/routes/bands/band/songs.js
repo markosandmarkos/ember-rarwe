@@ -1,4 +1,5 @@
 import Route from '@ember/routing/route';
+import {capitalize as capitalizeWords} from 'rarwe/helpers/capitalize';
 
 export default Route.extend({
 
@@ -16,7 +17,8 @@ export default Route.extend({
   actions: {
     didTransition() {
       let band = this.modelFor('bands.band');
-      document.title = `${band.name} songs - Rock & Roll`;
+      let name = capitalizeWords(band.name);
+      document.title = `${name} songs - Rock & Roll`;
     },
   }
 

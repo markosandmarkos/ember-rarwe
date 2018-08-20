@@ -35,12 +35,12 @@
     <!--<li class="rr-list-item">-->
     <li class="rr-list-item" data-test-rr="song-list-item">
 
-      {{song.title}}
+      {{capitalize song.title}}
       {{star-rating class="fr" rating=song.rating onClick=(action 'updateRating' song)}}
     </li>
   {{else}}
     <li class="rr-empty-message">
-      No {{model.name}} songs yet.
+      No {{capitalize model.name}} songs yet, why don't you <a href="#" onclick={{action "addSong"}}>create one?</a>
     </li>
   {{/each}}
 </ul>
@@ -51,7 +51,7 @@
     <form class="rr-inline-form" onsubmit={{action "saveSong"}} data-test-rr="new-song-form">
 
       {{!input type="text" class="rr-input" value=newSongTitle placeholder="New song"}}
-      {{input type="text" class="rr-input" value=newSongTitle placeholder="New song" data-test-rr="new-song-input"}}
+      {{input type="text" class="rr-input" placeholder=newSongPlaceholder value=newSongTitle}}
 
       <div class="rr-inline-form-group">
 
