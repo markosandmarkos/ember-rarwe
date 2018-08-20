@@ -1,8 +1,8 @@
 import {module, test} from 'qunit';
 import {visit, click, fillIn, currentURL} from '@ember/test-helpers';
-import {createBand} from 'rarwe/tests/helpers/custom-helpers';
 import {setupApplicationTest} from 'ember-qunit';
 import setupMirageTest from 'ember-cli-mirage/test-support/setup-mirage';
+import {loginAs, createBand} from 'rarwe/tests/helpers/custom-helpers';
 
 module('Acceptance | Bands', function (hooks) {
   setupApplicationTest(hooks);
@@ -14,6 +14,7 @@ module('Acceptance | Bands', function (hooks) {
     this.server.create('band', {name: 'Radiohead'});
     this.server.create('band', {name: 'Long Distance Calling'});
 
+    await loginAs('a@a.a');
     await visit('/');
 
     assert.dom('[data-test-rr=band-link]').exists({count: 2}, 'All band links are rendered');
@@ -27,6 +28,7 @@ module('Acceptance | Bands', function (hooks) {
     this.server.create('band', {name: 'Royal Blood'});
     this.server.logging = true;
 
+    await loginAs('a@a.a');
     await visit('/');
     await createBand('Caspian');
 
@@ -59,6 +61,7 @@ module('Acceptance | Bands', function (hooks) {
       band
     });
 
+    await loginAs('a@a.a');
     await visit('/');
 
     await click('[data-test-rr=band-link]');
@@ -70,7 +73,7 @@ module('Acceptance | Bands', function (hooks) {
     await click('[data-test-rr=sort-by-title-desc]');
     assert.equal(currentURL(), '/bands/1/songs?sort=titleDesc');
 
-    assert.dom('[data-test-rr=song-list-item]:first-child').hasText('Spinning in Daffodils', 'The first song is the one that comes last in the alphabet');
+    assert.dom('[data-test-rr=song-list-item]:first-child').hasText('Spinning In Daffodils', 'The first song is the one that comes last in the alphabet');
     assert.dom('[data-test-rr=song-list-item]:last-child').hasText('Elephants', 'The last song is the one that comes first in the alphabet');
 
   });
@@ -105,6 +108,7 @@ module('Acceptance | Bands', function (hooks) {
       band
     });
 
+    await loginAs('a@a.a');
     await visit('/');
     await click('[data-test-rr=band-link]');
     await fillIn('[data-test-rr=search-box]', 'no');
