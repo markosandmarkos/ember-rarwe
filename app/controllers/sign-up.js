@@ -1,5 +1,6 @@
 import Controller from '@ember/controller';
 import {computed} from '@ember/object';
+import extractServerError from 'rarwe/utils/extract-server-error';
 
 export default Controller.extend({
 
@@ -16,11 +17,15 @@ export default Controller.extend({
   actions: {
     async signUp(event) {
       event.preventDefault();
-      let {email, password} = this;
-      let user = this.store.createRecord('user', {email, password});
-      await user.save();
-      await this.model.save();
-      await this.transitionToRoute('login');
+
+      try {
+        await this.model.save();
+        await this.transitionToRoute('login');
+      } catch(response) {
+        let errorMessage = extractServerError(response.errors);
+        this.baseErrors.pushObject(errorMessage);
+      }
+
     }
   }
 });
