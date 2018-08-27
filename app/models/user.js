@@ -10,6 +10,7 @@ const Validations = buildValidations({
 });
 
 const {Model, attr} = DS;
+
 export default Model.extend(Validations, {
   email: attr('string'),
   password: attr('string'),

@@ -1,7 +1,6 @@
 import {validator} from 'ember-cp-validations';
 
 export default [
-
   validator('presence', {
     presence: true,
     ignoreBlank: true,
@@ -12,5 +11,5 @@ export default [
     min: 8,
     message: 'Password should be at least 8 characters'
   })
-  
+
 ];

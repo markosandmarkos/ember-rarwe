@@ -13,8 +13,9 @@
     <div class="rr-inline-form-row">
       {{#if showErrors.password}}
         <div class="rr-form-field-error"
-             data-test-rr="password-error">{{v-get model 'password'
-                                                   'message'}}</div>
+             data-test-rr="password-error">
+          {{v-get model 'password' 'message'}}
+        </div>
       {{/if}}
       <label for="password">Password</label>
       {{input type="password" class="rr-input ml-auto" id="password" value=model.password
@@ -24,7 +25,8 @@
       <div class="rr-button-panel">
         <button type="submit" class="rr-action-button"
                 disabled={{v-get model 'isInvalid'}}
-                data-test-rr="sign-up-button">Sign up
+                data-test-rr="sign-up-button">
+          Sign up
         </button>
       </div>
       <div class="rr-cta">

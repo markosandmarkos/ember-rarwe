@@ -9,6 +9,7 @@ const Validations = buildValidations({
       min: 12,
       message: "The description needs to be at least 12 characters"
     }),
+    validator('year-of-formation')
 
   ]
 });

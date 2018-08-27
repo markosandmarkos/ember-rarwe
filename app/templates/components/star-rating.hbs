@@ -3,7 +3,6 @@
 {{else}}
   {{#each stars as |star|}}
 
-    <!--<span class="rating-star" onclick={{action "setRating" star.rating}}>-->
     <span class="rating-star" onclick={{action "setRating" star.rating}}
           data-test-rr={{concat "star-rating-" star.rating}}>
 
